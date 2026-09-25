@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+import os
+import platform
+import re
+import stat
+import subprocess
+import sys
+from datetime import datetime
+
+# Đảm bảo console Windows in Unicode không bị lỗi
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+LOG_FILE = "gitsecure.log"
+
+SENSITIVE_PATTERNS = [
+    r"apikey\s*=\s*['\"][A-Za-z0-9_\-]{16,}['\"]",
+    r"secret\s*=\s*['\"][A-Za-z0-9_\-]{8,}['\"]",
+    r"password\s*=\s*['\"][^'\"]{4,}['\"]",
+    r"token\s*=\s*['\"][A-Za-z0-9_\-]{10,}['\"]",
+    r"(AKIA|ASIA)[A-Z0-9]{16}",
+]
+
+
+def log(msg: str) -> None:
+    """Ghi nhật ký vi phạm vào gitsecure.log."""
+    try:
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(f"[{datetime.now()}] {msg}\n")
+    except Exception:
+        pass
+
+
+def scan_sensitive(file_path: str):
+    """Quét nội dung tệp tin tìm thông tin nhạy cảm hardcode."""
+    try:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+            content = f.read()
+        for pattern in SENSITIVE_PATTERNS:
+            if re.search(pattern, content, re.IGNORECASE):
+                return f"Sensitive info found in {file_path}: pattern {pattern}"
+    except Exception:
+        return None
+    return None
+
+
+def check_permissions(file_path: str):
+    """Kiểm tra quyền ghi nguy hiểm (world-writable) trên Unix/Linux."""
+    if platform.system() == "Windows":
+        return None
+    try:
+        st = os.stat(file_path)
+        if st.st_mode & stat.S_IWOTH:
+            return f"File {file_path} is world-writable!"
+    except Exception:
+        pass
+    return None
+
+
+def run_bandit():
+    """Chạy công cụ phân tích tĩnh mã nguồn Python Bandit."""
+    try:
+        result = subprocess.run(["bandit", "-r", "."], capture_output=True, text=True)
+        if "SEVERITY: High" in result.stdout:
+            log("Bandit: High severity issues found.")
+            return "Bandit: High severity issues found."
+    except FileNotFoundError:
+        return None
+    except Exception:
+        return None
+    return None
+
+
+def main():
+    findings = []
+    try:
+        files = subprocess.check_output(
+            ["git", "diff", "--cached", "--name-only"], stderr=subprocess.DEVNULL
+        ).decode("utf-8", errors="ignore").splitlines()
+    except Exception:
+        files = []
+
+    for file in files:
+        file = file.strip()
+        if not file or not os.path.isfile(file):
+            continue
+        result = scan_sensitive(file)
+        if result:
+            findings.append(result)
+        perms = check_permissions(file)
+        if perms:
+            findings.append(perms)
+
+    bandit_result = run_bandit()
+    if bandit_result:
+        findings.append(bandit_result)
+
+    if findings:
+        print("\nCOMMIT BLOCKED by GitSecure:")
+        for f in findings:
+            print(" -", f)
+            log(f)
+        sys.exit(1)
+    else:
+        print("GitSecure: All checks passed.")
+        sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()
