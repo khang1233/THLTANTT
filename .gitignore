@@ -49,3 +49,8 @@ secure.log.*
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Bài 2 - Mini CA Certificates & Keys
+.DS_Store
+certs/
+*.pem
