@@ -1,5 +1,8 @@
-import subprocess, logging
+import subprocess, logging, os, shutil
 from datetime import datetime
+
+if not shutil.which("nmap"):
+    os.environ["PATH"] += os.pathsep + r"C:\Users\Khang\AppData\Local\Programs\Nmap\nmap-7.92"
 
 logging.basicConfig(filename='netrecon.log', level=logging.INFO)
 

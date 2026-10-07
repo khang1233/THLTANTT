@@ -92,11 +92,17 @@ Mở trình duyệt truy cập `http://localhost:5000/`, nhập thông tin Targe
 ### 4.1. Kiểm tra `cli.py` trên Terminal
 * **Chạy `python .\cli.py` với chế độ mặc định (`all`):**
 
-![Chạy cli.py](../images/05_netrecon_cli_all.png)
+![Chạy cli.py - Phần 1](../images/05_netrecon_cli_all.png)
+
+![Chạy cli.py - Phần 2](../images/05_netrecon_cli_all_2.png)
 
 * **Test nhanh `cli.py` với các tham số dòng lệnh:**
 
-![Test nhanh cli.py](../images/06_netrecon_cli_modes.png)
+![Test nhanh cli.py - Phần 1](../images/06_netrecon_cli_modes.png)
+
+| Kết quả Banner & ARP (`192.168.1.1`) | Kết quả ARP & Kiểm tra CVE (`192.168.1.1`) |
+|:---:|:---:|
+| ![Test nhanh cli.py - Phần 2](../images/06_netrecon_cli_modes_2.png) | ![Test nhanh cli.py - Phần 3](../images/06_netrecon_cli_modes_3.png) |
 
 ---
 

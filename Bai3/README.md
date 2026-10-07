@@ -155,18 +155,24 @@ Dưới đây là các hình ảnh minh chứng cho từng bước thực nghi�
 ---
 
 ### 5.5. Kiểm tra công cụ trinh sát mạng `cli.py` (Chế độ đầy đủ)
-* **Mô tả:** Chạy `python .\cli.py`, nhập địa chỉ IP mục tiêu để thực hiện toàn bộ quy trình: Port Scan, Service Detection (Nmap), Banner Grabbing, Network Map (ARP) và Vulnerability Check.
-* **Đường dẫn ảnh:** `images/05_netrecon_cli_all.png`
+* **Mô tả:** Chạy `python .\cli.py`, nhập địa chỉ IP mục tiêu (`127.0.0.1`) để thực hiện toàn bộ quy trình: Port Scan, Service Detection (Nmap), Banner Grabbing, Network Map (ARP) và Vulnerability Check.
+* **Đường dẫn ảnh:** `images/05_netrecon_cli_all.png` & `images/05_netrecon_cli_all_2.png`
 
-![NetRecon CLI All](images/05_netrecon_cli_all.png)
+![NetRecon CLI All - Phần 1](images/05_netrecon_cli_all.png)
+
+![NetRecon CLI All - Phần 2](images/05_netrecon_cli_all_2.png)
 
 ---
 
 ### 5.6. Test nhanh `cli.py` với các chế độ quét chuyên biệt
-* **Mô tả:** Kiểm thử nhanh dòng lệnh với tham số `--target scanme.nmap.org --ports 22,80 --mode scan` và quét toàn diện thiết bị mạng nội bộ.
-* **Đường dẫn ảnh:** `images/06_netrecon_cli_modes.png`
+* **Mô tả:** Kiểm thử nhanh dòng lệnh với tham số `--target scanme.nmap.org --ports 22,80 --mode scan` và `--target 192.168.1.1 --ports 21,22,80,443 --mode all`.
+* **Đường dẫn ảnh:** `images/06_netrecon_cli_modes.png`, `images/06_netrecon_cli_modes_2.png` & `images/06_netrecon_cli_modes_3.png`
 
-![NetRecon CLI Modes](images/06_netrecon_cli_modes.png)
+![NetRecon CLI Modes - Phần 1](images/06_netrecon_cli_modes.png)
+
+| Kết quả Banner & ARP (`192.168.1.1`) | Kết quả ARP & Kiểm tra CVE (`192.168.1.1`) |
+|:---:|:---:|
+| ![NetRecon CLI Modes - Phần 2](images/06_netrecon_cli_modes_2.png) | ![NetRecon CLI Modes - Phần 3](images/06_netrecon_cli_modes_3.png) |
 
 ---
 
