@@ -50,7 +50,8 @@ secure.log.*
 .coverage
 htmlcov/
 
-# Bài 2 - Mini CA Certificates & Keys
+# Bài 2 & Bài 3 - Certificates, Keys & Environment Variables
 .DS_Store
 certs/
 *.pem
+.env
