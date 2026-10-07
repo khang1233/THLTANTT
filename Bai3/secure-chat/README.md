@@ -41,9 +41,9 @@ secure-chat/
 
 ```mermaid
 sequenceDiagram
-    participant C1 as Client 1 (phuoc)
+    participant C1 as Client 1 (khang)
     participant S as SecureChat Server (8443)
-    participant C2 as Client 2 (ty)
+    participant C2 as Client 2 (huy)
 
     Note over C1,S: Giai đoạn 1: Bắt tay Mutual TLS 1.2+ (Xác thực chứng chỉ 2 chiều)
     C1->>S: ClientHello + Xác minh server.crt bằng ca.crt
@@ -53,16 +53,16 @@ sequenceDiagram
 
     Note over C1,S: Giai đoạn 2: Đăng ký Định danh & Khóa phiên AES-256
     C1->>C1: Sinh khóa ngẫu nhiên K1 = os.urandom(32)
-    C1->>S: Gửi "phuoc:<hex(K1)>" qua kênh TLS
-    S->>S: Lưu (conn1, "phuoc", K1) vào ConnectionManager & Join phòng "general"
+    C1->>S: Gửi "khang:<hex(K1)>" qua kênh TLS
+    S->>S: Lưu (conn1, "khang", K1) vào ConnectionManager & Join phòng "general"
 
     Note over C1,C2: Giai đoạn 3: Truyền thông điệp mã hóa AES-256-CBC
     C1->>C1: Mã hóa msg bằng K1 + IV1 ngẫu nhiên (16 bytes)
     C1->>S: Gửi Ciphertext (IV1 || CT1)
-    S->>S: Giải mã bằng K1 -> "[phuoc]: xin chao"
+    S->>S: Giải mã bằng K1 -> "[khang]: xin chao"
     S->>S: Mã hóa lại theo khóa K2 của Client 2 (IV2 || CT2)
     S->>C2: Chuyển tiếp bản mã (IV2 || CT2)
-    C2->>C2: Giải mã bằng K2 -> Hiển thị "[phuoc]: xin chao"
+    C2->>C2: Giải mã bằng K2 -> Hiển thị "[khang]: xin chao"
 ```
 
 ---
