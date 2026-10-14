@@ -20,3 +20,8 @@
 ### [Bài 3](Bai3)
 * **[SecureChat](Bai3/secure-chat)** — Ứng dụng chat bảo mật đa luồng với xác thực chứng chỉ số hai chiều (Mutual TLS 1.2+), mã hóa tin nhắn đầu-cuối (AES-256-CBC + PKCS7), quản lý kết nối và phòng chat an toàn.
 * **[NetRecon](Bai3/netrecon)** — Bộ công cụ trinh sát và khám phá mạng (Quét cổng bất đồng bộ giới hạn tốc độ Asyncio Semaphore, nhận dạng dịch vụ Nmap, thu thập Banner, lập bản đồ mạng ARP, kiểm tra lỗ hổng CVE, cảnh báo qua SMTP SSL, giao diện CLI & Flask Web UI).
+
+### [Bài 4](Bai4)
+* **[WebVulnScanner](Bai4/web-vuln-scanner)** — Bộ công cụ quét lỗ hổng ứng dụng web tự động (XSS Scanner, SQL Injection Tester, CSRF Detector, SSRF Tester, Report Generator, kiểm thử Unittest và giao diện Web UI Flask).
+* **[JWTSecure](Bai4/jwt-security-tools)** — Bộ công cụ phân tích và bảo mật JWT & OAuth 2.0 (API Gateway xác thực Bearer Token, JWT Cracker bẻ khóa từ điển đa luồng, JWT Validator kiểm tra chữ ký & thời hạn, OAuthClient luồng Authorization Code, TokenManager quản lý Access/Refresh Token và Pytest).
+
