@@ -25,3 +25,7 @@
 * **[WebVulnScanner](Bai4/web-vuln-scanner)** — Bộ công cụ quét lỗ hổng ứng dụng web tự động (XSS Scanner, SQL Injection Tester, CSRF Detector, SSRF Tester, Report Generator, kiểm thử Unittest và giao diện Web UI Flask).
 * **[JWTSecure](Bai4/jwt-security-tools)** — Bộ công cụ phân tích và bảo mật JWT & OAuth 2.0 (API Gateway xác thực Bearer Token, JWT Cracker bẻ khóa từ điển đa luồng, JWT Validator kiểm tra chữ ký & thời hạn, OAuthClient luồng Authorization Code, TokenManager quản lý Access/Refresh Token và Pytest).
 
+
+### [Bài 5](Bai5)
+* **[SAST-Tool](Bai5/sast-tool)** – Công cụ kiểm thử bảo mật tĩnh mã nguồn Python (Phân tích cây cú pháp AST, so khớp mẫu Regex, Security Rule Engine đa cấp, Linting Flake8, xuất báo cáo chuẩn quốc tế SARIF 2.1.0 và kiểm thử Unittest).
+* **[DAST-Tool](Bai5/dast-tool)** – Nền tảng phân tích động và giám sát an ninh ứng dụng thời gian thực (Runtime Monitor CPU/RAM/Files, phát hiện rò rỉ bộ nhớ GC & tràn số nguyên 64-bit, phân tích lưu lượng mạng, phát hiện syscall nguy hiểm, hộp cát ảo Virtual Sandbox và Flask REST API).
